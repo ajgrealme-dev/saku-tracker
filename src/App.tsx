@@ -131,6 +131,13 @@ export default function App() {
   // Total Lifetime Balance in all envelopes
   const totalCurrentBalance = envelopes.reduce((sum, e) => sum + (e.currentBalance || 0), 0);
 
+  // Total Allocated Percentage from Salary across all envelopes
+  const totalAllocatedPercentage = envelopes.reduce(
+    (sum, e) => sum + (e.allocatedPercentage || 0),
+    0
+  );
+  const remainingPercentage = Math.round((100 - totalAllocatedPercentage) * 10) / 10;
+
   // Filtered transactions for the History tab (ONLY real income & expenses)
   const historyTransactions = transactions.filter((tx) => {
     if (selectedEnvelopeId !== 'all' && tx.envelopeId !== selectedEnvelopeId) {
@@ -456,6 +463,56 @@ export default function App() {
                   <FolderPlus size={14} />
                   + Tambah Pos Baru
                 </button>
+              </div>
+
+              {/* Status Bar Informasi Persentase Alokasi Gaji Terpakai */}
+              <div className="p-3.5 bg-slate-900/90 border border-slate-800/90 rounded-2xl space-y-2.5 shadow-md">
+                <div className="flex justify-between items-center text-xs">
+                  <div className="flex items-center gap-1.5 font-black text-slate-200">
+                    <Sparkles size={14} className="text-indigo-400" />
+                    <span>Alokasi Gaji Terpakai:</span>
+                  </div>
+                  <span
+                    className={`text-[11px] font-black px-2.5 py-0.5 rounded-full border ${
+                      totalAllocatedPercentage === 100
+                        ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+                        : totalAllocatedPercentage < 100
+                        ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/30'
+                        : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
+                    }`}
+                  >
+                    {totalAllocatedPercentage}% dari 100%
+                  </span>
+                </div>
+
+                {/* Visual Progress Bar */}
+                <div className="h-2.5 w-full bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700/40 flex">
+                  <div
+                    className={`h-full rounded-full transition-all duration-500 ${
+                      totalAllocatedPercentage === 100
+                        ? 'bg-gradient-to-r from-emerald-500 to-teal-400'
+                        : totalAllocatedPercentage < 100
+                        ? 'bg-gradient-to-r from-indigo-500 to-cyan-400'
+                        : 'bg-gradient-to-r from-rose-500 to-amber-500'
+                    }`}
+                    style={{ width: `${Math.min(100, Math.max(0, totalAllocatedPercentage))}%` }}
+                  />
+                </div>
+
+                <div className="flex justify-between items-center text-[10px] text-slate-400 font-medium">
+                  <span>
+                    {totalAllocatedPercentage === 100
+                      ? '✅ 100% gaji teralokasi pas ke semua pos'
+                      : totalAllocatedPercentage < 100
+                      ? `ℹ️ Sisa ${remainingPercentage}% gaji bebas (belum dialokasikan)`
+                      : `⚠️ Melebihi 100% gaji (+${totalAllocatedPercentage - 100}% over)`}
+                  </span>
+                  {totalAllocatedPercentage < 100 && (
+                    <span className="font-black text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded-md">
+                      Sisa Bebas: {remainingPercentage}%
+                    </span>
+                  )}
+                </div>
               </div>
 
               {/* Grid Amplop */}
