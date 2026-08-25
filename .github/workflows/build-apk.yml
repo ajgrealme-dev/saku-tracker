@@ -24,24 +24,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Set up Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
-
-      - name: Install NPM Dependencies
-        run: npm install
-
-      - name: Build Web Application
-        run: npm run build
-
-      - name: Copy Web Assets to Android Project
-        run: |
-          mkdir -p android/app/src/main/assets/public
-          cp -rf dist/* android/app/src/main/assets/public/
 
       - name: Build Android APK with Gradle
         run: |
@@ -53,6 +37,7 @@ jobs:
         run: |
           mkdir -p release_apk
           cp android/app/build/outputs/apk/debug/app-debug.apk release_apk/SakuTracker-v1.0.apk
+          cp release_apk/SakuTracker-v1.0.apk ./SakuTracker.apk
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
@@ -68,6 +53,8 @@ jobs:
           name: SakuTracker v1.0.0 (Official Android APK)
           draft: false
           prerelease: false
-          files: release_apk/SakuTracker-v1.0.apk
+          files: |
+            release_apk/SakuTracker-v1.0.apk
+            SakuTracker.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

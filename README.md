@@ -1,32 +1,26 @@
-# React + TypeScript + Vite
+# 💰 SakuTracker - Aplikasi Keuangan & Manajemen Amplop (Android & Web)
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Aplikasi pencatat keuangan pribadi dan alokasi amplop pintar dengan live preview nominal dan mode offline penuh untuk pegawai harian/lepas.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📥 Download Aplikasi Android (.APK) Langsung
 
-## React Compiler
+Pilih salah satu tautan di bawah ini untuk langsung mengunduh file `.apk` ke HP Android Anda:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🚀 **[Download SakuTracker.apk (Direct Raw Download)](https://raw.githubusercontent.com/ajgrealme-dev/saku-tracker/main/SakuTracker.apk)**
+- 📦 **[Download SakuTracker-v1.0.apk (Releases Mirror)](https://github.com/ajgrealme-dev/saku-tracker/raw/main/release_apk/SakuTracker-v1.0.apk)**
 
-## Expanding the Oxlint configuration
+---
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## 🌐 Versi Web (PWA Live)
+Bisa dibuka langsung di browser:
+👉 **[https://ajgrealme-dev.github.io/saku-tracker/](https://ajgrealme-dev.github.io/saku-tracker/)**
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+---
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## ✨ Fitur Utama
+* 📱 **Native Android APK & PWA Support**: Berjalan 100% offline tanpa koneksi internet.
+* ✉️ **Sistem Amplop Anggaran**: Alokasi persentase dinamis dengan Live Shadow Preview (bayangan nominal).
+* 💵 **Pemisah Ribuan Otomatis**: Input angka langsung terformat titik ribuan (`1.000.000`).
+* 📊 **Statistik & Ringkasan Pengeluaran**: Visualisasi alokasi dan saldo tersisa secara real-time.
