@@ -2,10 +2,16 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/saku-tracker/',
+  base: '',
+  root: __dirname,
   plugins: [
     react(),
     tailwindcss(),
@@ -16,13 +22,13 @@ export default defineConfig({
         name: 'SakuTracker - Dompet Amplop Digital',
         short_name: 'SakuTracker',
         description: 'Aplikasi pelacak keuangan dan sistem amplop digital offline-first.',
-        theme_color: '#4f46e5',
-        background_color: '#0f172a',
+        theme_color: '#0D9488',
+        background_color: '#020617',
         display: 'standalone',
         orientation: 'portrait',
         icons: [
           {
-            src: '/saku-tracker/icon.svg',
+            src: 'icon.svg',
             sizes: '192x192 512x512',
             type: 'image/svg+xml',
             purpose: 'any maskable',
@@ -34,14 +40,4 @@ export default defineConfig({
       },
     }),
   ],
-  server: {
-    host: true,
-    port: 5173,
-    cors: true,
-  },
-  preview: {
-    host: true,
-    port: 5173,
-    cors: true,
-  },
 })
