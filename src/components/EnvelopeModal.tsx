@@ -367,23 +367,24 @@ export default function EnvelopeModal({ envelopeToEdit, onClose, onSuccess }: En
           </div>
 
           {/* Actions */}
-          <div className="flex gap-2.5 pt-3 border-t border-slate-100 dark:border-slate-800">
+          <div className="flex gap-2 pt-3 border-t border-slate-100 dark:border-slate-800">
             {isEditing && (
               <button
                 type="button"
                 onClick={handleDelete}
                 disabled={isSubmitting}
-                className="p-3 rounded-xl bg-rose-500/10 text-rose-500 hover:bg-rose-500 hover:text-white transition-all shrink-0"
-                title="Hapus Pos Alokasi"
+                className="py-3 px-3.5 rounded-xl bg-rose-500/10 text-rose-400 hover:bg-rose-600 hover:text-white active:scale-95 transition-all flex items-center justify-center gap-1 font-black shrink-0 text-[11px]"
+                title="Hapus Pos Alokasi Ini"
               >
                 <Trash2 size={16} />
+                <span>Hapus</span>
               </button>
             )}
             
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 py-3 px-4 rounded-xl font-bold border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
+              className="flex-1 py-3 px-3 rounded-xl font-bold border border-slate-200 dark:border-slate-700 text-slate-300 hover:bg-slate-800 active:scale-95 transition-all text-xs"
             >
               Batal
             </button>
@@ -391,10 +392,10 @@ export default function EnvelopeModal({ envelopeToEdit, onClose, onSuccess }: En
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex-1 py-3 px-4 rounded-xl font-black text-white bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-600/20 flex items-center justify-center gap-1.5 transition-all disabled:opacity-50"
+              className="flex-1 py-3 px-3 rounded-xl font-black text-white bg-indigo-600 hover:bg-indigo-500 active:scale-95 shadow-md shadow-indigo-950 flex items-center justify-center gap-1.5 transition-all disabled:opacity-50 text-xs"
             >
               {isEditing ? <Save size={15} /> : <PlusCircle size={15} />}
-              {isEditing ? 'Simpan Perubahan' : 'Tambah Pos'}
+              {isEditing ? 'Simpan' : 'Tambah'}
             </button>
           </div>
         </form>
